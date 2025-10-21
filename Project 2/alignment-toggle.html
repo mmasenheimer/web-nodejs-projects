@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text Alignment Toggle</title>
+
+    <style>
+      body {
+        background-color: white;
+        color: black;
+        font-family: Arial, sans-serif;
+        text-align: left;
+        margin-top: 50px;
+        font-size: 20px;
+      }
+
+      h1 {
+        margin-bottom: 30px;
+      }
+
+      a.toggle-button {
+        display: inline-block;
+        font-size: 20px;
+        padding: 10px 20px;
+        color: darkred;
+        font-weight: bold;
+
+        background-color: beige;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Toggle Text Alignment</h2>
+    <p id="text">Click the button to change the alignment of the text!</p>
+    <a class="toggle-button" id="toggleAlign">Toggle Alignment</a>
+
+    <script>
+      const toggleButton = document.getElementById("toggleAlign");
+      const text = document.getElementById("text");
+
+      let alignments = ["left", "center", "right"];
+      let currentIndex = 0;
+
+      toggleButton.addEventListener("click", function () {
+        currentIndex = (currentIndex + 1) % alignments.length;
+        text.style.textAlign = alignments[currentIndex];
+      });
+    </script>
+  </body>
+</html>

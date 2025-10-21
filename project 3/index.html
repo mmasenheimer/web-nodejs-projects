@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+  <head>
+    <title>Homepage</title>
+    <style>
+
+      header {
+        background-color: hsl(0, 0%, 20%);
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+      .nav-links a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+      }
+    
+      main {
+        padding: 20px;
+      }
+      .section {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ccc;
+      }
+      #special-section {
+        color: darkblue;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+    </style>
+    <script>
+      function changeBackground() {
+        document.querySelector("main").style.backgroundColor = "#f0f8ff";
+      }
+
+      function changeTextColor() {
+        document.getElementById("special-section").style.color = "crimson";
+      }
+    </script>
+  </head>
+  <body onload="changeBackground()">
+  
+    <header>
+      <h1>Welcome to My Website</h1>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </header>
+
+
+    <main>
+      <div class="section">
+        <img src="mtrainier.jpg" alt="Sample Image" width="150" />
+        <p>
+          This is a picture of my favorite national park,
+          <span style="font-weight: bold">Mt. Rainier</span>. You can
+           check out <a href="https://www.nps.gov/mora/index.htm" target="_blank">this link</a> for more
+          info.
+        </p>
+      </div>
+
+      <div id="special-section" class="section">
+        <div>I love going on hikes and collecting records!</div>
+        <p>Click the button below to change this text color.</p>
+        <button onclick="changeTextColor()">Change Text Color</button>
+      </div>
+    </main>
+
+    <footer>
+      <p>Website created by Michael Masenheimer</p>
+    </footer>
+  </body>
+</html>

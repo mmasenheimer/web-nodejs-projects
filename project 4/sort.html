@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sorter Page</title>
+  </head>
+  <body>
+    <h2>Number Sorter</h2>
+    <button onclick="sortNumbers()">Enter Numbers & Sort</button><br /><br />
+    <textarea id="sortedNumbers" rows="5" cols="50" readonly></textarea>
+
+    <script>
+      function sortNumbers() {
+        let input = window.prompt("Input a list of numbers:");
+
+        let numArray = input.split(",").map(function (item) {
+          return Number(item.trim());
+        });
+
+        for (let i = 0; i < numArray.length; i++) {
+          if (isNaN(numArray[i])) {
+            alert("This is an invalid input:" + numArray[i]);
+            return;
+          }
+        }
+
+        for (let i = 0; i < numArray.length - 1; i++) {
+          // I am using bubble sort as the sorting algorithm
+          for (let j = 0; j < numArray.length - i - 1; j++) {
+            if (numArray[j] > numArray[j + 1]) {
+              let temp = numArray[j];
+              numArray[j] = numArray[j + 1];
+              numArray[j + 1] = temp;
+            }
+          }
+        }
+
+        document.getElementById("sortedNumbers").value = numArray.join(", ");
+      }
+    </script>
+  </body>
+</html>

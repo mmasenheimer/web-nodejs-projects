@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Background color toggle</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+        text-align: center;
+        margin-top: 350px;
+      }
+      a.toggle-button {
+        display: inline-block;
+        font-size: 20px;
+        padding: 10px 20px;
+        background-color: green;
+        color: black;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Toggle Background Color</h1>
+    <h3>Click this to change the color of the background!</h3>
+    <a class="toggle-button" id="toggleLink">Toggle Background</a>
+    <script>
+      const toggleLink = document.getElementById("toggleLink");
+      const body = document.body;
+
+      toggleLink.addEventListener("click", function () {
+        if (body.style.backgroundColor === "black") {
+          body.style.backgroundColor = "white";
+          body.style.color = "black";
+        } else {
+          body.style.backgroundColor = "black";
+          body.style.color = "white";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>
+  <title>About Me</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+
+    .sidebar {
+      float: left;
+      width: 200px;
+      height: 100vh;
+      background-color: #333;
+      color: white;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+    }
+    .sidebar a:hover {
+      background-color: #555;
+    }
+
+    .main-content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+
+ 
+    .image-text {
+      position: relative;
+      margin-top: 20px;
+    }
+    .image-text img {
+      width: 150px;
+      height: auto;
+      float: left;
+      margin-right: 15px;
+    }
+    .hidden-box {
+      visibility: hidden;
+      background-color: lightblue;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    .none-box {
+      display: none;
+      background-color: lightgreen;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      margin: 10px 5px 0 0;
+      padding: 8px 12px;
+    }
+  </style>
+  <script>
+    function toggleVisibility() {
+      let box = document.getElementById("visibility-box");
+      if (box.style.visibility === "hidden") {
+        box.style.visibility = "visible";
+      } else {
+        box.style.visibility = "hidden";
+      }
+    }
+
+    function toggleDisplay() {
+      let box = document.getElementById("display-box");
+      if (box.style.display === "none") {
+        box.style.display = "block";
+      } else {
+        box.style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Navigation</h2>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="main-content">
+    <h1>About Me</h1>
+    <p>About page with sidebar on the left</p>
+
+    <div class="image-text">
+      <img src="resume-pic.jpg" alt="Profile Picture">
+      <p>
+        Hello! My name is Michael Masenheimer, and I'm a student at the University of Arizona!
+      </p>
+    </div>
+
+    <div id="visibility-box" class="hidden-box">
+      You found a <strong> hidden easter egg!</strong>.
+    </div>
+
+    <div id="display-box" class="none-box">
+      You found another <strong>hidden easter egg!</strong>.
+    </div>
+
+    <button onclick="toggleVisibility()">Toggle Visibility</button>
+    <button onclick="toggleDisplay()">Toggle Display</button>
+  </div>
+</body>
+</html>

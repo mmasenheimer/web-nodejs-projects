@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countdown timer web page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #9b2323;
+        margin-top: 100px;
+      }
+
+      #timer {
+        font-size: 60px;
+        font-weight: bold;
+        background-color: #4caf50;
+        color: white;
+        padding: 20px 40px;
+        border: 3px solid #333;
+        border-radius: 15px;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+
+      #resetBtn {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="timer">10</div>
+    <br />
+    <button id="resetBtn">Reset the timer</button>
+
+    <script>
+      let timeLeft = 10;
+      let timerDisplay = document.getElementById("timer");
+      let resetBtn = document.getElementById("resetBtn");
+      let countdown;
+
+      function startCountdown() {
+        countdown = setInterval(function () {
+          timerDisplay.innerText = timeLeft;
+          timeLeft--;
+
+          if (timeLeft < 0) {
+            clearInterval(countdown);
+            timerDisplay.innerText = "out of time!";
+          }
+        }, 1000);
+      }
+
+      function resetTimer() {
+        clearInterval(countdown);
+        timeLeft = 10;
+        timerDisplay.innerText = timeLeft;
+        startCountdown();
+      }
+
+      resetBtn.addEventListener("click", resetTimer);
+
+      startCountdown();
+    </script>
+  </body>
+</html>

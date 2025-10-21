@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Traversal and Recursive Iteration</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fafafa;
+        padding: 30px;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 6px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Nested Category List</h2>
+
+    <ul id="categoryList">
+      <li>
+        Technology
+        <ul>
+          <li>
+            Baseballs
+            <ul>
+              <li>bats</li>
+              <li>cleats</li>
+            </ul>
+          </li>
+          <li>
+            Smartphones
+            <ul>
+              <li>Black berry</li>
+              <li>samsung phones</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        Sports
+        <ul>
+          <li>
+            Team
+            <ul>
+              <li>Basketball</li>
+              <li>Soccer</li>
+            </ul>
+          </li>
+          <li>
+            Individual
+            <ul>
+              <li>Tennis</li>
+              <li>Golf</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <script>
+      function styleAndTraverseList(list, level) {
+        var items = list.children;
+
+        for (var i = 0; i < items.length; i++) {
+          var li = items[i];
+
+          if (li.tagName === "LI") {
+            console.log(
+              "Level " + level + ": " + li.firstChild.textContent.trim()
+            );
+
+            if (level === 1) {
+              li.style.fontSize = "20px";
+              li.style.color = "#0000FF";
+              li.style.backgroundColor = "#F0F0F0";
+            } else if (level === 2) {
+              li.style.fontSize = "18px";
+              li.style.color = "#008000";
+              li.style.backgroundColor = "#E0E0E0";
+            } else if (level === 3) {
+              li.style.fontSize = "16px";
+              li.style.color = "#FFA500";
+              li.style.backgroundColor = "#D0D0D0";
+            }
+
+            li.style.padding = "10px";
+            li.style.border = "1px solid #CCCCCC";
+            li.style.marginBottom = "4px";
+
+            li.onclick = function () {
+              this.style.backgroundColor = "#FFD700";
+            };
+
+            var nested = li.querySelector("ul");
+            if (nested) {
+              styleAndTraverseList(nested, level + 1);
+            }
+          }
+        }
+      }
+
+      var topList = document.getElementById("categoryList");
+      styleAndTraverseList(topList, 1);
+    </script>
+  </body>
+</html>

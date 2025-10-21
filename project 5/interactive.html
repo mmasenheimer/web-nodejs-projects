@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+    <title>Interactive Form Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+      }
+
+      form {
+        background-color: #fff;
+        border: 2px solid #ccc;
+        width: 350px;
+        padding: 5px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 9px;
+        padding: 8px;
+      }
+
+      input[type="text"],
+      input[type="color"] {
+        width: 90%;
+        padding: 8px;
+      }
+
+      #greeting {
+        color: #555;
+      }
+
+      button {
+        background-color: #334734;
+        color: white;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="interactiveForm" onsubmit="return validateForm()">
+      <label for="name">Enter your name here:</label>
+      <input type="text" id="name" oninput="updateGreeting()" />
+      <br />
+
+      <p id="greeting"></p>
+
+      <label for="color">Choose a page color:</label>
+      <input type="color" id="color" oninput="changeBackground()" />
+
+      <label for="message">Personal message:</label>
+      <input type="text" id="message" placeholder="Your custom message" />
+      <br />
+
+      <button type="submit">Submit</button>
+      <br />
+    </form>
+
+    <script>
+      function updateGreeting() {
+        var name = document.getElementById("name").value;
+        var greeting = document.getElementById("greeting");
+        if (name.trim() !== "") {
+          greeting.textContent =
+            "Hello, " + name + "! Welcome to the interactive form.";
+        } else {
+          greeting.textContent = "";
+        }
+      }
+
+      function changeBackground() {
+        var color = document.getElementById("color").value;
+        document.body.style.backgroundColor = color;
+      }
+
+      function validateForm() {
+        var name = document.getElementById("name").value;
+        if (name.trim() === "") {
+          alert("enter your name before submitting.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .portfolio {
+        overflow: auto;
+      }
+      .tile {
+        float: left;
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        border: 2px solid #ccc;
+        text-align: center;
+        padding: 10px;
+        box-sizing: border-box;
+        transition: border-color 0.3s, background-color 0.3s;
+      }
+      .tile img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      form {
+        margin-top: 30px;
+        max-width: 400px;
+
+        margin-right: auto;
+        padding: 15px;
+        border: 1px solid #ccc;
+      }
+      form input,
+      form textarea,
+      form button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 10px;
+        box-sizing: border-box;
+      }
+      #confirmation {
+        margin-top: 15px;
+        color: green;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
+    <script>
+      function addHoverEffects() {
+        let tiles = document.getElementsByClassName("tile");
+        for (let i = 0; i < tiles.length; i++) {
+          tiles[i].onmouseover = function () {
+            this.style.borderColor = "green";
+            this.style.backgroundColor = "#eef";
+          };
+          tiles[i].onmouseout = function () {
+            this.style.borderColor = "#ccc";
+            this.style.backgroundColor = "white";
+          };
+        }
+      }
+
+      function handleForm(event) {
+        event.preventDefault();
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let feedback = document.getElementById("feedback").value;
+
+        localStorage.setItem("feedback", feedback);
+
+        document.getElementById("confirmation").innerText =
+          "Thank you " + name + "!!!! The feedback has been recorded.";
+      }
+
+      window.onload = addHoverEffects;
+    </script>
+  </head>
+  <body>
+    <h1>My Portfolio</h1>
+
+    <div class="portfolio">
+      <div class="tile">
+        <img src="read_webpage_labeled.jpg" alt="Project 1" />
+        <p>Project 1</p>
+      </div>
+      <div class="tile">
+        <img src="18822.jpg" alt="Project 2" />
+        <p>Project 2</p>
+      </div>
+      <div class="tile">
+        <img src="Design-Web-Page-in-HTML.jpg" alt="Project 3" />
+        <p>Project 3</p>
+      </div>
+    </div>
+
+    <form onsubmit="handleForm(event)">
+      <h2>Contact Me</h2>
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea
+        id="feedback"
+        placeholder="Feedback, Good, Okay, etc..."
+        required
+      ></textarea>
+      <button type="submit">Submit</button>
+      <div id="confirmation"></div>
+    </form>
+  </body>
+</html>

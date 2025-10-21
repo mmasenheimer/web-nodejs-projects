@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Word Counter!</title>
+  </head>
+  <body>
+    <h2>Word Frequency Counter</h2>
+
+    <textarea
+      id="userText"
+      rows="8"
+      cols="60"
+      placeholder="Text here"
+    ></textarea
+    ><br /><br />
+    <button onclick="countWords()">Count the words</button>
+
+    <p id="wordFrequency"></p>
+
+    <script>
+      function countWords() {
+        // Get the text from the textarea
+        let text = document.getElementById("userText").value.trim();
+
+        if (text === "") {
+          document.getElementById("wordFrequency").innerText =
+            "No text entered here";
+          return;
+        }
+
+        let words = text.toLowerCase().split(" ");
+
+        let frequency = {};
+        for (let i = 0; i < words.length; i++) {
+          let word = words[i];
+          if (word === "") continue;
+          // If there is a space, continue (doesn't count toward the frequencry)
+          if (frequency[word] === undefined) {
+            frequency[word] = 1;
+          } else {
+            frequency[word] += 1;
+          }
+        }
+
+        let output = "";
+        for (let word in frequency) {
+          output += word + ": " + frequency[word] + "\n";
+          // Output string with new lines
+        }
+
+        // Display
+        document.getElementById("wordFrequency").innerText = output;
+      }
+    </script>
+  </body>
+</html>

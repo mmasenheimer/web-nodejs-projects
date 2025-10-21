@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interactive table web opage</title>
+    <style>
+      table {
+        width: 60%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      th,
+      td {
+        border: 1px solid #444;
+        padding: 10px;
+        text-align: center;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      input {
+        margin-right: 10px;
+        padding: 5px;
+      }
+
+      button {
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Interactive Table</h2>
+
+    <table id="dataTable">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td>Agatha</td>
+        <td>200</td>
+        <td>Atlantis</td>
+        <td><button onclick="deleteRow(this)">Delete</button></td>
+      </tr>
+      <tr>
+        <td>Maria</td>
+        <td>30</td>
+        <td>Mesa</td>
+        <td><button onclick="deleteRow(this)">Delete</button></td>
+      </tr>
+    </table>
+
+    <form id="addRowForm">
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="text" id="age" placeholder="Age" required />
+      <input type="text" id="city" placeholder="City" required />
+      <button type="submit">Add Row</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("addRowForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          var table = document.getElementById("dataTable");
+          var newRow = table.insertRow();
+
+          var nameCell = newRow.insertCell(0);
+          var ageCell = newRow.insertCell(1);
+          var cityCell = newRow.insertCell(2);
+          var actionCell = newRow.insertCell(3);
+
+          var nameText = document.createTextNode(
+            document.getElementById("name").value
+          );
+          var ageText = document.createTextNode(
+            document.getElementById("age").value
+          );
+          var cityText = document.createTextNode(
+            document.getElementById("city").value
+          );
+
+          nameCell.appendChild(nameText);
+          ageCell.appendChild(ageText);
+          cityCell.appendChild(cityText);
+
+          var delButton = document.createElement("button");
+          delButton.appendChild(document.createTextNode("Delete"));
+          delButton.onclick = function () {
+            deleteRow(delButton);
+          };
+          actionCell.appendChild(delButton);
+
+          document.getElementById("addRowForm").reset();
+        });
+
+      function deleteRow(button) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      }
+    </script>
+  </body>
+</html>

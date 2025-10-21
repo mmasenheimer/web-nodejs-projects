@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Number Guessing Game</title>
+  </head>
+  <body>
+    <h2>Number Guessing Game</h2>
+    <button onclick="playGame()">Start the game</button>
+
+    <script>
+      function playGame() {
+        // Random number between 1 and 100
+        let target = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+        let guessedCorrectly = false;
+
+        while (!guessedCorrectly) {
+          let guess = window.prompt("Guess num between 1 and 100");
+          if (guess === null) {
+            alert("Game cancelled.");
+            return;
+          }
+
+          guess = Number(guess.trim());
+
+          if (isNaN(guess) || guess < 1 || guess > 100) {
+            alert("Make sure to enter number between 1 and 100");
+            continue;
+          }
+
+          attempts++;
+
+          // Check guess
+          if (guess < target) {
+            alert("Too Low");
+          } else if (guess > target) {
+            alert("Too High");
+          } else {
+            guessedCorrectly = true;
+            alert("Correct!  " + attempts + " attempts.");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Table Style Toggle</title>
+    <style>
+      .h3-style {
+        font-weight: bold;
+      }
+      body {
+        font-family: "Times New Roman", Times, serif;
+        text-align: center;
+        margin: 250px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 60%;
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+
+      /* This is going to be the first style of table */
+      .style1 th,
+      .style1 td {
+        border: 1px solid black;
+      }
+
+      /* Second style of table */
+      .style2 th {
+        background-color: #9e5858;
+        color: white;
+      }
+
+      .style2 tr:nth-child(even) {
+        background-color: #45c75b;
+      }
+
+      .style2 tr:nth-child(odd) {
+        background-color: #38298d;
+      }
+
+      /* This is the third style of table */
+      .style3 th,
+      .style3 td {
+        border: none;
+      }
+
+      a.toggle-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: black;
+        color: white;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Toggle Table Style</h2>
+
+    <div class="h3-style">Click the button to toggle the table style!</div>
+
+    <table id="myTable" class="style1">
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+      <tr>
+        <td>Staplers</td>
+        <td>5</td>
+        <td>$3</td>
+      </tr>
+      <tr>
+        <td>Mac n Cheese</td>
+        <td>7</td>
+        <td>$4000</td>
+      </tr>
+      <tr>
+        <td>Fortnite V Bucks</td>
+        <td>1</td>
+        <td>$90</td>
+      </tr>
+    </table>
+
+    <a class="toggle-button" id="toggleStyle">Toggle Table Style</a>
+
+    <script>
+      const table = document.getElementById("myTable");
+      const toggleButton = document.getElementById("toggleStyle");
+
+      const styles = ["style1", "style2", "style3"];
+
+      let currentStyleI = 0;
+      const savedStyle = localStorage.getItem("tableStyle");
+      if (savedStyle && styles.includes(savedStyle)) {
+        table.className = savedStyle;
+        currentStyleI = styles.indexOf(savedStyle);
+      }
+
+      toggleButton.addEventListener("click", function () {
+        currentStyleI = (currentStyleI + 1) % styles.length;
+        table.className = styles[currentStyleI];
+
+        localStorage.setItem("tableStyle", styles[currentStyleI]);
+      });
+    </script>
+  </body>
+</html>

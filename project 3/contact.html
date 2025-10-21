@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<head>
+  <title>Contact</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      height: 100px;
+    }
+
+    .radio-group, .checkbox-group {
+      margin-top: 10px;
+    }
+
+    .radio-group label, .checkbox-group label {
+      font-weight: normal;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+    #message {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    #message.success {
+      color: green;
+    }
+    #message.error {
+      color: red;
+    }
+  </style>
+  <script>
+    function handleContactForm(event) {
+      event.preventDefault();
+
+      let name = document.getElementById("name");
+      let email = document.getElementById("email");
+      let userMessage = document.getElementById("userMessage");
+      let reason = document.querySelector('input[name="reason"]:checked');
+      let terms = document.getElementById("terms").checked;
+      let messageBox = document.getElementById("message");
+
+      if (name === "" || email === "" || userMessage === "" || !reason || !terms) {
+        messageBox.textContent = "Error: Please fill in all fields";
+        messageBox.className = "error";
+      } else {
+
+        console.log("Name:", name);
+        console.log("Email:", email);
+        console.log("Message:", userMessage);
+        console.log("Reason:", reason.value);
+        console.log("Agreed to terms:", terms);
+
+        messageBox.textContent = "Success! Your message has been sent.";
+        messageBox.className = "success";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Contact Me</h1>
+
+  <form class="contact-form" onsubmit="handleContactForm(event)">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email">
+    </div>
+
+    <div class="form-group">
+      <label for="userMessage">Message:</label>
+      <textarea id="userMessage"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Reason for Contact:</label>
+      <div class="radio-group">
+        <input type="radio" id="general" name="reason" value="General Question">
+        <label for="general">General Question</label><br>
+        <input type="radio" id="support" name="reason" value="Support">
+        <label for="support">Support</label><br>
+        <input type="radio" id="partnership" name="reason" value="Partnership">
+        <label for="partnership">Partnership</label>
+      </div>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="terms">
+      <label for="terms">I agree to the terms and conditions</label>
+    </div>
+
+    <button type="submit">Submit</button>
+
+    <div id="message"></div>
+  </form>
+</body>
+</html>

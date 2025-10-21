@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Font Size Toggle</title>
+
+    <style>
+      body {
+        background-color: white;
+        color: black;
+        font-family: "Times New Roman", Times, serif;
+        text-align: center;
+        margin-top: 350px;
+        font-size: 16px;
+      }
+
+      h1 {
+        margin-bottom: 30px;
+      }
+
+      a.toggle-button {
+        display: inline-block;
+        font-size: 20px;
+        padding: 10px 20px;
+        background-color: lightgreen;
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Toggle Font Size</h1>
+    <h3>Click this button to toggle the font size!</h3>
+
+    <a class="toggle-button" id="toggleLink">Toggle Font Size</a>
+
+    <script>
+      const toggleLink = document.getElementById("toggleLink");
+      const body = document.body;
+
+      let savedFontSize = localStorage.getItem("fontSize");
+      if (savedFontSize) {
+        body.style.fontSize = savedFontSize;
+      }
+
+      toggleLink.addEventListener("click", function () {
+        if (body.style.fontSize === "50px") {
+          body.style.fontSize = "16px";
+        } else {
+          body.style.fontSize = "50px";
+        }
+        localStorage.setItem("fontSize", body.style.fontSize);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Validation</title>
+    <style>
+      #errorMsg {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Simple Validation Form</h2>
+    <form id="myForm" onsubmit="return false;">
+      <label for="name">Name:</label>
+      <input type="text" id="name" /><br /><br />
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" /><br /><br />
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" /><br /><br />
+
+      <button onclick="validateForm()">Validate!</button>
+    </form>
+
+    <p id="errorMsg"></p>
+
+    <script>
+      function validateForm() {
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let age = document.getElementById("age").value.trim();
+        let error = "";
+
+        if (name === "") {
+          error += "Name cannot be empty.\n";
+        }
+
+        let atIndex = email.indexOf("@");
+        let dotIndex = email.indexOf(".", atIndex + 1);
+        if (
+          atIndex === -1 ||
+          dotIndex === -1 ||
+          email.indexOf("@", atIndex + 1) !== -1
+        ) {
+          error += "Enter a valid email\n";
+        }
+
+        let ageNumber = Number(age);
+        if (isNaN(ageNumber) || ageNumber <= 18) {
+          error += "Age must be above 18.\n";
+        }
+
+        if (error === "") {
+          alert("valid form");
+          document.getElementById("errorMsg").innerText = "";
+        } else {
+          document.getElementById("errorMsg").innerText = error;
+        }
+      }
+    </script>
+  </body>
+</html>
